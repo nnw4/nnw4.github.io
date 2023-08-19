@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>loading</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+    <link rel="icon" href="data:;base64,=">
+    <style type="text/css">
+        #preview-area {
+            width: 18vw;
+            height: 18vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 60px;
+            right: 0;
+            margin: auto;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        .sk-chase {
+            width: 18vw;
+            height: 18vw;
+            position: relative;
+            animation: sk-chase 2.5s infinite linear both
+        }
+
+        .sk-chase-dot {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: sk-chase-dot 2s infinite ease-in-out both
+        }
+
+        .sk-chase-dot:before {
+            content: "";
+            display: block;
+            width: 25%;
+            height: 25%;
+            background-color: #ff6600;
+            border-radius: 100%;
+            animation: sk-chase-dot-before 2s infinite ease-in-out both
+        }
+
+        .sk-chase-dot:nth-child(1) {
+            animation-delay: -1.1s
+        }
+
+        .sk-chase-dot:nth-child(2) {
+            animation-delay: -1s
+        }
+
+        .sk-chase-dot:nth-child(3) {
+            animation-delay: -.9s
+        }
+
+        .sk-chase-dot:nth-child(4) {
+            animation-delay: -.8s
+        }
+
+        .sk-chase-dot:nth-child(5) {
+            animation-delay: -.7s
+        }
+
+        .sk-chase-dot:nth-child(6) {
+            animation-delay: -.6s
+        }
+
+        .sk-chase-dot:nth-child(1):before {
+            animation-delay: -1.1s
+        }
+
+        .sk-chase-dot:nth-child(2):before {
+            animation-delay: -1s
+        }
+
+        .sk-chase-dot:nth-child(3):before {
+            animation-delay: -.9s
+        }
+
+        .sk-chase-dot:nth-child(4):before {
+            animation-delay: -.8s
+        }
+
+        .sk-chase-dot:nth-child(5):before {
+            animation-delay: -.7s
+        }
+
+        .sk-chase-dot:nth-child(6):before {
+            animation-delay: -.6s
+        }
+
+        @keyframes sk-chase {
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes sk-chase-dot {
+
+            100%,
+            80% {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes sk-chase-dot-before {
+            50% {
+                transform: scale(.4)
+            }
+
+            0%,
+            100% {
+                transform: scale(1)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preview-area">
+        <div class="sk-chase">
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+        </div>
+    </div>
+    <script>
+
+        $_GET = (function () {
+            var url = window.document.location.href.toString();
+            var u = url.split("?");
+            if (typeof (u[1]) == "string") {
+                u = u[1].split("&");
+                var get = {};
+                for (var i in u) {
+                    var j = u[i].split("=");
+                    get[j[0]] = j[1];
+                }
+                return get;
+            } else {
+                return {};
+            }
+        })();
+        get_Location('//dwz.rjh8.cn/linksets/geturl.php?i=' + $_GET['i'])
+
+        //获取重定向地址
+        function get_Location(url) {
+
+            var $url = http_get(url);
+
+            if(!$url) return false;
+
+            //是否包含http
+            if($url.indexOf('http') == -1) return false;
+
+
+            window.location.href = $url;
+        }
+
+        //同步发起请求
+        function http_get(url){
+            var xhr = new XMLHttpRequest;
+            xhr.open("GET", url, false);
+            xhr.send();
+            if(xhr.status == 200){
+                var data = xhr.responseText;
+                return data;
+            }else{
+                return false;
+            }
+            var data = xhr.responseText;
+            return data;
+        }
+
+       
+
+    </script>
+</body>
+
+</html>

